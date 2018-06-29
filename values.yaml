@@ -5,7 +5,7 @@ scheduler:
   name: scheduler
   image:
     repository: "daskdev/dask"
-    tag: "0.17.4"
+    tag: "0.18.1"
     pullPolicy: IfNotPresent
   replicas: 1
   serviceType: "ClusterIP"
@@ -26,9 +26,9 @@ worker:
   name: worker
   image:
     repository: "daskdev/dask"
-    tag: "0.17.4"
+    tag: "0.18.1"
     pullPolicy: IfNotPresent
-  replicas: 3
+  replicas: 1
   aptPackages: >-
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1
