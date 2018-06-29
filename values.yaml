@@ -8,15 +8,15 @@ scheduler:
     tag: "0.17.4"
     pullPolicy: IfNotPresent
   replicas: 1
-  serviceType: "LoadBalancer"
+  serviceType: "ClusterIP"
   servicePort: 8786
-  resources: {}
-    # limits:
-    #   cpu: 1.8
-    #   memory: 6G
-    # requests:
-    #   cpu: 1.8
-    #   memory: 6G
+  resources:
+    limits:
+      cpu: 2
+      memory: 6G
+    requests:
+      cpu: 2
+      memory: 6G
 
 webUI:
   name: webui
@@ -39,16 +39,16 @@ worker:
     # - name: EXTRA_PIP_PACKAGES
     #   value: s3fs dask-ml --upgrade
   resources: {}
-    # limits:
-    #   cpu: 1
-    #   memory: 3G
-    # requests:
-    #   cpu: 1
-    #   memory: 3G
+    limits:
+      cpu: 20
+      memory: 60G
+    requests:
+      cpu: 20
+      memory: 60G
 
 jupyter:
   name: jupyter
-  enabled: true
+  enabled: false
   image:
     repository: "daskdev/dask-notebook"
     tag: "0.17.4"
