@@ -38,13 +38,17 @@ worker:
     #   value: numba xarray -c conda-forge
     # - name: EXTRA_PIP_PACKAGES
     #   value: s3fs dask-ml --upgrade
-  resources: {}
+  resources:
     limits:
       cpu: 20
       memory: 60G
     requests:
       cpu: 20
       memory: 60G
+
+ingress:
+  enabled: true
+  domain: jovial-monitor.chivo.cl
 
 jupyter:
   name: jupyter

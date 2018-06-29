@@ -1,0 +1,23 @@
+{{if .Values.ingress.enabled}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "dask.fullname" . }}
+  labels:
+    app: {{ template "dask.name" . }}
+    chart: {{ template "dask.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: {{ .Values.ingress.domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ template "dask.fullname" . }}-scheduler
+              servicePort: 80
+{{end}}
